@@ -7,36 +7,45 @@ namespace CASecondTask
     {
         public IEnumerable<Node> GetCycle(Graph graph)
         {
-            var stack = new Stack<Node>();
-            stack.Push(graph[0]);
             var visited = new HashSet<Node>();
-            var parent = new Dictionary<Node, Node>{ {graph[0], null} };
+            var track = new Dictionary<Node, Node>();
+            //var putToStack = new Dictionary<Node, Node>();
 
-            while (stack.Count != 0)
+            while (visited.Count < graph.Nodes.Count())
             {
-                var currentNode = stack.Pop();
-                visited.Add(currentNode);
-                foreach (var adjacentNode in currentNode.AdjacentNodes.Where(node => !node.Equals(parent[currentNode])))
+                var searchStartNode = graph.Nodes.Except(visited).First();
+                var stack = new Stack<Node>();
+                stack.Push(searchStartNode);
+                track[searchStartNode] = null;
+                //putToStack[searchStartNode] = null;
+
+                while (stack.Count != 0)
                 {
-                    if (stack.Contains(adjacentNode))
+                    var currentNode = stack.Pop();
+                    visited.UnionWith(currentNode.AdjacentNodes);
+                    foreach (var adjacentNode in currentNode.AdjacentNodes.Where(node => !node.Equals(track[currentNode])))
                     {
-                        parent[adjacentNode] = currentNode;
-                        return RouteRestore(adjacentNode).OrderBy(node => node.Number);
+                        if (stack.Contains(adjacentNode))
+                        {
+                            track[adjacentNode] = currentNode;
+                            return RouteRestore(adjacentNode).OrderBy(node => node.Number);
+                        }
+                        stack.Push(adjacentNode);
+                        track.Add(adjacentNode, currentNode); // TODO Тут перезаписываются значения ключа;
                     }
-                    stack.Push(adjacentNode);
-                    parent.Add(adjacentNode, currentNode);
                 }
             }
-            
+
             return null;
             
-            IEnumerable<Node> RouteRestore(Node cycleStartNode)
+            IEnumerable<Node> RouteRestore(Node childOfCycleStartNode)
             {
-                yield return cycleStartNode;
-                while (parent[cycleStartNode] != null)
+                yield return childOfCycleStartNode;
+                var currentNode = childOfCycleStartNode;
+                while (track[currentNode] != null && !currentNode.Equals(track[childOfCycleStartNode]))
                 {
-                    yield return parent[cycleStartNode];
-                    cycleStartNode = parent[cycleStartNode];
+                    yield return track[currentNode];
+                    currentNode = track[currentNode];
                 }
             }
         }
