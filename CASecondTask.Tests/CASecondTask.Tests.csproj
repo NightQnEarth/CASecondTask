@@ -46,6 +46,12 @@
         <Compile Include="Tests.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\CASecondTask\CASecondTask.csproj">
+        <Project>{cfd0aa58-d06d-4fa5-b755-326bf43af576}</Project>
+        <Name>CASecondTask</Name>
+      </ProjectReference>
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.
