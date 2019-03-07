@@ -24,24 +24,25 @@ namespace CASecondTask
                             string.Join(Environment.NewLine, 
                                         cycle.Select(node => node.Number.ToString())));
 
-
         public static Graph GetInputData(Func<string> lineReader)
         {   
             var nodesCount = int.Parse(lineReader().Trim());
             var graph = new Graph(nodesCount);
 
-            foreach (var node in graph.Nodes)
-                foreach (var nodeNumber in ReadAdjacentNodeCollection())
+            for (int nodeNumber = 0; nodeNumber < nodesCount; nodeNumber++)
+                foreach (var adjacentNodeNumber in ReadAdjacentNodeCollection(nodeNumber + 1))
                 {
-                    if (node.AdjacentNodes.Contains(graph[nodeNumber - 1])) continue;
-                    node.MakeAdjacent(graph[nodeNumber - 1]);
+                    if (graph[nodeNumber].AdjacentNodes.Contains(graph[adjacentNodeNumber - 1])) continue;
+                    graph[nodeNumber].MakeAdjacent(graph[adjacentNodeNumber - 1]);
                 }
 
             return graph;
 
-            IEnumerable<int> ReadAdjacentNodeCollection() =>
-                Regex.Split(lineReader(), @"\W+").Where(str => str.Length > 0 && str != "0")
-                                                 .Select(int.Parse);
+            IEnumerable<int> ReadAdjacentNodeCollection(int nodeNumber) =>
+                Regex.Split(lineReader(), @"\W+")
+                     .Where(str => str.Length > 0 && str != "0" && str != nodeNumber.ToString())
+                     .Distinct()
+                     .Select(int.Parse);
         }
     }
 }

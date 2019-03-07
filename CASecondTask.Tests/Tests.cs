@@ -200,7 +200,7 @@ namespace CASecondTask.Tests
                 Environment.NewLine,
                 "4",
                 "2 0",
-                "3 4 0",
+                "1 3 4 0",
                 "2 4 0",
                 "2 3 0");
 
@@ -214,6 +214,25 @@ namespace CASecondTask.Tests
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
         
-        // TODO: Петли, кратные рёбра...
+        [Test]
+        public void IgnoreLoopsAndMultipleEdgesTest()
+        {
+            var inputLines = string.Join(
+                Environment.NewLine,
+                "4",
+                "1 2 2 0",
+                "1 3 4 0",
+                "2 4 3 0",
+                "2 3 3 0");
+
+            var expectedResult = string.Join(
+                Environment.NewLine,
+                "N",
+                "2",
+                "3",
+                "4");
+            
+            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+        }
     }
 }
