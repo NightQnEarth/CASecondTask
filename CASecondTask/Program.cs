@@ -18,11 +18,8 @@ namespace CASecondTask
         
         public static string ResultGenerate(IEnumerable<Node> cycle) => 
             cycle == null ?
-                "A" :
-                string.Join(Environment.NewLine,
-                            "N",
-                            string.Join(Environment.NewLine, 
-                                        cycle.Select(node => node.Number.ToString())));
+                "A" : 
+                string.Join(Environment.NewLine, "N", string.Join(Environment.NewLine, cycle));
 
         public static Graph GetInputData(Func<string> lineReader)
         {   

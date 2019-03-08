@@ -234,5 +234,114 @@ namespace CASecondTask.Tests
             
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
+        
+        [Test]
+        public void SixNodesRingGraphWithOneBigCycleTest()
+        {
+            var inputLines = string.Join(
+                Environment.NewLine,
+                "6",
+                "2 6 0",
+                "1 3 0",
+                "2 4 0",
+                "3 5 0",
+                "4 6 0",
+                "5 1 0");
+
+            var expectedResult = string.Join(
+                Environment.NewLine,
+                "N",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6");
+            
+            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+        }
+        
+        [Test]
+        public void SixNodesRingCyclicGraphWithTwoCyclesTest()
+        {
+            var inputLines = string.Join(
+                Environment.NewLine,
+                "6",
+                "2 6 0",
+                "1 3 0",
+                "2 4 5 0",
+                "3 5 0",
+                "3 4 6 0",
+                "1 5 0");
+
+            var expectedResult = string.Join(
+                Environment.NewLine,
+                "N",
+                "3",
+                "4",
+                "5");
+            
+            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+        }
+        
+        [Test]
+        public void SixNodesRingCyclicGraphWithThreeCyclesTest()
+        {
+            var inputLines = string.Join(
+                Environment.NewLine,
+                "6",
+                "2 4 6 0",
+                "1 3 0",
+                "2 4 5 0",
+                "1 3 5 0",
+                "3 4 6 0",
+                "1 5 0");
+
+            var expectedResult = string.Join(
+                Environment.NewLine,
+                "N",
+                "1",
+                "4",
+                "5",
+                "6");
+            
+            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+        }
+        
+        [Test]
+        public void SixDisconnectedNodesGraphTest()
+        {
+            var inputLines = string.Join(
+                Environment.NewLine,
+                "6",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0");
+
+            const string expectedResult = "A";
+            
+            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+        }
+        
+        [Test]
+        public void SixNodesAlmostRingGraphTest()
+        {
+            var inputLines = string.Join(
+                Environment.NewLine,
+                "6",
+                "2 0",
+                "1 3 0",
+                "2 4 0",
+                "3 5 0",
+                "4 6 0",
+                "5 0");
+
+            const string expectedResult = "A";
+            
+            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+        }
     }
 }
