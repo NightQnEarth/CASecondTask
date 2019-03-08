@@ -28,10 +28,8 @@ namespace CASecondTask
 
             for (int nodeNumber = 0; nodeNumber < nodesCount; nodeNumber++)
                 foreach (var adjacentNodeNumber in ReadAdjacentNodeCollection(nodeNumber + 1))
-                {
-                    if (graph[nodeNumber].AdjacentNodes.Contains(graph[adjacentNodeNumber - 1])) continue;
-                    graph[nodeNumber].MakeAdjacent(graph[adjacentNodeNumber - 1]);
-                }
+                    if (!graph[nodeNumber].AdjacentNodes.Contains(graph[adjacentNodeNumber - 1]))
+                        graph[nodeNumber].MakeAdjacent(graph[adjacentNodeNumber - 1]);
 
             return graph;
 

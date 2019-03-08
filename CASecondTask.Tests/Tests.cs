@@ -22,7 +22,7 @@ namespace CASecondTask.Tests
             {
                 File.Delete(tempFileName);
             }
-            catch (Exception) { }
+            catch (IOException) { }
             
             return expectedResult.Equals(actualResult);
 

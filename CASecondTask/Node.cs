@@ -1,29 +1,32 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CASecondTask
 {
     public class Node
     {
         public readonly int Number;
-        public List<Node> AdjacentNodes { get; }
+        private readonly List<Node> _adjacentNodes;
 
         public Node(int nodeNumber)
         {
             Number = nodeNumber;
-            AdjacentNodes = new List<Node>();
+            _adjacentNodes = new List<Node>();
         }
+
+        public IEnumerable<Node> AdjacentNodes => _adjacentNodes.Select(node => node);
 
         public void MakeAdjacent(Node otherNode)
         {
-            AdjacentNodes.Add(otherNode);
-            otherNode.AdjacentNodes.Add(this);
+            _adjacentNodes.Add(otherNode);
+            otherNode._adjacentNodes.Add(this);
         }
 
         public override string ToString() => Number.ToString();
 
         public override bool Equals(object obj) => 
-            obj is Node node && node.Number == Number && node.AdjacentNodes == AdjacentNodes;
+            obj is Node node && node.Number == Number && node._adjacentNodes == _adjacentNodes;
 
-        public override int GetHashCode() => Number + AdjacentNodes.GetHashCode();
+        public override int GetHashCode() => Number + _adjacentNodes.GetHashCode();
     }
 }
