@@ -27,6 +27,7 @@ namespace CASecondTask
         public override bool Equals(object obj) => 
             obj is Node node && node.Number == Number && node._adjacentNodes == _adjacentNodes;
 
-        public override int GetHashCode() => Number + _adjacentNodes.GetHashCode();
+        public override int GetHashCode() => 
+            unchecked((Number * 397) ^ (_adjacentNodes != null ? _adjacentNodes.GetHashCode() : 0));
     }
 }
