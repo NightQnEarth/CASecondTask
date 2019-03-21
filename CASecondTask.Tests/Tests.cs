@@ -7,9 +7,11 @@ namespace CASecondTask.Tests
     [TestFixture]
     public class Tests
     {
+        private const string ExpectedAcyclicResult = "A";
+
         private readonly DepthFirstSearch finder = new DepthFirstSearch();
 
-        private bool CheckCorrect(string inputLines, string expectedResult)
+        private string GetActualResult(string inputLines)
         {
             var tempFileName = Path.GetTempFileName();
 
@@ -24,7 +26,7 @@ namespace CASecondTask.Tests
             }
             catch (IOException) { }
 
-            return expectedResult.Equals(actualResult);
+            return actualResult;
 
             string GetActualResult()
             {
@@ -55,7 +57,7 @@ namespace CASecondTask.Tests
                 "2",
                 "3");
 
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
         }
 
         [Test]
@@ -67,9 +69,7 @@ namespace CASecondTask.Tests
                 "2 0",
                 "1 0");
 
-            const string expectedResult = "A";
-
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), ExpectedAcyclicResult);
         }
 
         [Test]
@@ -82,9 +82,7 @@ namespace CASecondTask.Tests
                 "1 0",
                 "1 0");
 
-            const string expectedResult = "A";
-
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), ExpectedAcyclicResult);
         }
 
         [Test]
@@ -104,7 +102,7 @@ namespace CASecondTask.Tests
                 "2",
                 "3");
 
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
         }
 
         [Test]
@@ -118,9 +116,7 @@ namespace CASecondTask.Tests
                 "1 0",
                 "1 0");
 
-            const string expectedResult = "A";
-
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), ExpectedAcyclicResult);
         }
 
         [Test]
@@ -141,7 +137,7 @@ namespace CASecondTask.Tests
                 "2",
                 "4");
 
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
         }
 
         [Test]
@@ -169,7 +165,7 @@ namespace CASecondTask.Tests
                 "9",
                 "11");
 
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
         }
 
         [Test]
@@ -188,9 +184,7 @@ namespace CASecondTask.Tests
                 "6 0",
                 "6 0");
 
-            const string expectedResult = "A";
-
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), ExpectedAcyclicResult);
         }
 
         [Test]
@@ -211,7 +205,7 @@ namespace CASecondTask.Tests
                 "3",
                 "4");
 
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
         }
 
         [Test]
@@ -232,7 +226,7 @@ namespace CASecondTask.Tests
                 "3",
                 "4");
 
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
         }
 
         [Test]
@@ -258,7 +252,7 @@ namespace CASecondTask.Tests
                 "5",
                 "6");
 
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
         }
 
         [Test]
@@ -281,7 +275,7 @@ namespace CASecondTask.Tests
                 "4",
                 "5");
 
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
         }
 
         [Test]
@@ -305,7 +299,7 @@ namespace CASecondTask.Tests
                 "5",
                 "6");
 
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
         }
 
         [Test]
@@ -321,9 +315,7 @@ namespace CASecondTask.Tests
                 "0",
                 "0");
 
-            const string expectedResult = "A";
-
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), ExpectedAcyclicResult);
         }
 
         [Test]
@@ -339,9 +331,7 @@ namespace CASecondTask.Tests
                 "4 6 0",
                 "5 0");
 
-            const string expectedResult = "A";
-
-            Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
+            Assert.AreEqual(GetActualResult(inputLines), ExpectedAcyclicResult);
         }
     }
 }
