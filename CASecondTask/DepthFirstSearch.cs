@@ -41,7 +41,7 @@ namespace CASecondTask
             }
 
             return null;
-            
+
             IEnumerable<Node> RouteRestore(Node newParentOfCycleEndNode)
             {
                 yield return newParentOfCycleEndNode;

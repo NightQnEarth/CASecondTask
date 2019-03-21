@@ -7,13 +7,13 @@ namespace CASecondTask.Tests
     [TestFixture]
     public class Tests
     {
-        private readonly DepthFirstSearch _finder = new DepthFirstSearch();
-        
+        private readonly DepthFirstSearch finder = new DepthFirstSearch();
+
         private bool CheckCorrect(string inputLines, string expectedResult)
         {
             var tempFileName = Path.GetTempFileName();
-            
-            using (StreamWriter writer = new StreamWriter(tempFileName)) 
+
+            using (var writer = new StreamWriter(tempFileName))
                 writer.Write(inputLines);
 
             var actualResult = GetActualResult();
@@ -23,20 +23,20 @@ namespace CASecondTask.Tests
                 File.Delete(tempFileName);
             }
             catch (IOException) { }
-            
+
             return expectedResult.Equals(actualResult);
 
             string GetActualResult()
             {
-                using (StreamReader reader = new StreamReader(tempFileName))
+                using (var reader = new StreamReader(tempFileName))
                 {
                     var graph = Program.GetInputData(reader.ReadLine);
-                    var resultChain = _finder.GetCycle(graph);
+                    var resultChain = finder.GetCycle(graph);
                     return Program.ResultGenerate(resultChain);
                 }
             }
         }
-        
+
         [Test]
         public void DescriptionFromTaskTest()
         {
@@ -47,17 +47,17 @@ namespace CASecondTask.Tests
                 "1 3 0",
                 "1 2 4 0",
                 "3 0");
-            
+
             var expectedResult = string.Join(
                 Environment.NewLine,
                 "N",
                 "1",
                 "2",
                 "3");
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
-        
+
         [Test]
         public void TwoNodesAcyclicGraphTest()
         {
@@ -68,10 +68,10 @@ namespace CASecondTask.Tests
                 "1 0");
 
             const string expectedResult = "A";
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
-        
+
         [Test]
         public void ThreeNodesAcyclicGraphTest()
         {
@@ -83,10 +83,10 @@ namespace CASecondTask.Tests
                 "1 0");
 
             const string expectedResult = "A";
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
-        
+
         [Test]
         public void ThreeNodesCyclicGraphTest()
         {
@@ -103,10 +103,10 @@ namespace CASecondTask.Tests
                 "1",
                 "2",
                 "3");
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
-        
+
         [Test]
         public void FourNodesAcyclicGraphTest()
         {
@@ -119,10 +119,10 @@ namespace CASecondTask.Tests
                 "1 0");
 
             const string expectedResult = "A";
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
-        
+
         [Test]
         public void FourNodesCyclicGraphTest()
         {
@@ -140,10 +140,10 @@ namespace CASecondTask.Tests
                 "1",
                 "2",
                 "4");
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
-        
+
         [Test]
         public void DisconnectedGraphWithOneCyclesTest()
         {
@@ -161,17 +161,17 @@ namespace CASecondTask.Tests
                 "8 11 0",
                 "8 0",
                 "8 9 0");
-            
+
             var expectedResult = string.Join(
                 Environment.NewLine,
                 "N",
                 "8",
                 "9",
                 "11");
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
-        
+
         [Test]
         public void DisconnectedGraphWithoutCyclesTest()
         {
@@ -187,12 +187,12 @@ namespace CASecondTask.Tests
                 "6 0",
                 "6 0",
                 "6 0");
-            
+
             const string expectedResult = "A";
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
-        
+
         [Test]
         public void FirstNodeNotInCycleTest()
         {
@@ -210,10 +210,10 @@ namespace CASecondTask.Tests
                 "2",
                 "3",
                 "4");
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
-        
+
         [Test]
         public void IgnoreLoopsAndMultipleEdgesTest()
         {
@@ -231,10 +231,10 @@ namespace CASecondTask.Tests
                 "2",
                 "3",
                 "4");
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
-        
+
         [Test]
         public void SixNodesRingGraphWithOneBigCycleTest()
         {
@@ -257,10 +257,10 @@ namespace CASecondTask.Tests
                 "4",
                 "5",
                 "6");
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
-        
+
         [Test]
         public void SixNodesRingCyclicGraphWithTwoCyclesTest()
         {
@@ -280,10 +280,10 @@ namespace CASecondTask.Tests
                 "3",
                 "4",
                 "5");
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
-        
+
         [Test]
         public void SixNodesRingCyclicGraphWithThreeCyclesTest()
         {
@@ -304,10 +304,10 @@ namespace CASecondTask.Tests
                 "4",
                 "5",
                 "6");
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
-        
+
         [Test]
         public void SixDisconnectedNodesGraphTest()
         {
@@ -322,10 +322,10 @@ namespace CASecondTask.Tests
                 "0");
 
             const string expectedResult = "A";
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
-        
+
         [Test]
         public void SixNodesAlmostRingGraphTest()
         {
@@ -340,7 +340,7 @@ namespace CASecondTask.Tests
                 "5 0");
 
             const string expectedResult = "A";
-            
+
             Assert.IsTrue(CheckCorrect(inputLines, expectedResult));
         }
     }

@@ -12,15 +12,15 @@ namespace CASecondTask
             var finder = new DepthFirstSearch();
             var graph = GetInputData(Console.ReadLine);
             var resultCycle = finder.GetCycle(graph);
-            
+
             Console.Write(ResultGenerate(resultCycle));
         }
-        
-        public static string ResultGenerate(IEnumerable<Node> cycle) => 
+
+        public static string ResultGenerate(IEnumerable<Node> cycle) =>
             cycle == null ? "A" : string.Join(Environment.NewLine, "N", string.Join(Environment.NewLine, cycle));
 
         public static Graph GetInputData(Func<string> lineReader)
-        {   
+        {
             var nodesCount = int.Parse(lineReader().Trim());
             var graph = new Graph(nodesCount);
 
