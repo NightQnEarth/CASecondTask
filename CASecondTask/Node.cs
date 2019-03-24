@@ -22,12 +22,12 @@ namespace CASecondTask
             otherNode.adjacentNodes.Add(this);
         }
 
-        public override string ToString() => Number.ToString();
-
         public override bool Equals(object obj) =>
             obj is Node node && node.Number == Number && node.adjacentNodes == adjacentNodes;
 
         public override int GetHashCode() =>
             unchecked((Number * 397) ^ (adjacentNodes != null ? adjacentNodes.GetHashCode() : 0));
+
+        public override string ToString() => Number.ToString();
     }
 }
