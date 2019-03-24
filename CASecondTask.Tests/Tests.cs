@@ -33,14 +33,14 @@ namespace CASecondTask.Tests
                 using (var reader = new StreamReader(tempFileName))
                 {
                     var graph = Program.GetInputData(reader.ReadLine);
-                    var resultChain = finder.GetCycle(graph);
-                    return Program.ResultGenerate(resultChain);
+                    var resultCycle = finder.GetCycle(graph);
+                    return Program.ResultGenerate(resultCycle);
                 }
             }
         }
 
         [Test]
-        public void DescriptionFromTaskTest()
+        public void SampleInputFromReadme_ReturnCycle()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -57,11 +57,11 @@ namespace CASecondTask.Tests
                 "2",
                 "3");
 
-            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
+            Assert.AreEqual(expectedResult, GetActualResult(inputLines));
         }
 
         [Test]
-        public void TwoNodesAcyclicGraphTest()
+        public void TwoNodesGraph_ReturnA()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -69,11 +69,11 @@ namespace CASecondTask.Tests
                 "2 0",
                 "1 0");
 
-            Assert.AreEqual(GetActualResult(inputLines), ExpectedAcyclicResult);
+            Assert.AreEqual(ExpectedAcyclicResult, GetActualResult(inputLines));
         }
 
         [Test]
-        public void ThreeNodesAcyclicGraphTest()
+        public void ThreeNodesAcyclicGraph_ReturnA()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -82,11 +82,11 @@ namespace CASecondTask.Tests
                 "1 0",
                 "1 0");
 
-            Assert.AreEqual(GetActualResult(inputLines), ExpectedAcyclicResult);
+            Assert.AreEqual(ExpectedAcyclicResult, GetActualResult(inputLines));
         }
 
         [Test]
-        public void ThreeNodesCyclicGraphTest()
+        public void ThreeNodesCyclicGraph_ReturnCycle()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -102,11 +102,11 @@ namespace CASecondTask.Tests
                 "2",
                 "3");
 
-            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
+            Assert.AreEqual(expectedResult, GetActualResult(inputLines));
         }
 
         [Test]
-        public void FourNodesAcyclicGraphTest()
+        public void FourNodesAcyclicGraph_ReturnA()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -116,11 +116,11 @@ namespace CASecondTask.Tests
                 "1 0",
                 "1 0");
 
-            Assert.AreEqual(GetActualResult(inputLines), ExpectedAcyclicResult);
+            Assert.AreEqual(ExpectedAcyclicResult, GetActualResult(inputLines));
         }
 
         [Test]
-        public void FourNodesCyclicGraphTest()
+        public void FourNodesCyclicGraph_ReturnCycle()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -137,11 +137,11 @@ namespace CASecondTask.Tests
                 "2",
                 "4");
 
-            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
+            Assert.AreEqual(expectedResult, GetActualResult(inputLines));
         }
 
         [Test]
-        public void DisconnectedGraphWithOneCyclesTest()
+        public void DisconnectedGraphWithOneCycle_ReturnCycle()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -165,11 +165,11 @@ namespace CASecondTask.Tests
                 "9",
                 "11");
 
-            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
+            Assert.AreEqual(expectedResult, GetActualResult(inputLines));
         }
 
         [Test]
-        public void DisconnectedGraphWithoutCyclesTest()
+        public void DisconnectedGraphWithoutCycles_ReturnA()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -184,11 +184,11 @@ namespace CASecondTask.Tests
                 "6 0",
                 "6 0");
 
-            Assert.AreEqual(GetActualResult(inputLines), ExpectedAcyclicResult);
+            Assert.AreEqual(ExpectedAcyclicResult, GetActualResult(inputLines));
         }
 
         [Test]
-        public void FirstNodeNotInCycleTest()
+        public void CyclicGraphWithFirstNodeNotInCycle_ReturnCycle()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -205,11 +205,11 @@ namespace CASecondTask.Tests
                 "3",
                 "4");
 
-            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
+            Assert.AreEqual(expectedResult, GetActualResult(inputLines));
         }
 
         [Test]
-        public void IgnoreLoopsAndMultipleEdgesTest()
+        public void GraphWithLoopsAndMultipleEdges_ReturnCycle()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -226,11 +226,11 @@ namespace CASecondTask.Tests
                 "3",
                 "4");
 
-            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
+            Assert.AreEqual(expectedResult, GetActualResult(inputLines));
         }
 
         [Test]
-        public void SixNodesRingGraphWithOneBigCycleTest()
+        public void SixNodesRingGraphWithOneBigCycle_ReturnCycle()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -252,11 +252,11 @@ namespace CASecondTask.Tests
                 "5",
                 "6");
 
-            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
+            Assert.AreEqual(expectedResult, GetActualResult(inputLines));
         }
 
         [Test]
-        public void SixNodesRingCyclicGraphWithTwoCyclesTest()
+        public void SixNodesRingGraphWithTwoCycles_ReturnCycle()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -275,11 +275,11 @@ namespace CASecondTask.Tests
                 "4",
                 "5");
 
-            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
+            Assert.AreEqual(expectedResult, GetActualResult(inputLines));
         }
 
         [Test]
-        public void SixNodesRingCyclicGraphWithThreeCyclesTest()
+        public void SixNodesRingGraphWithThreeCycles_ReturnCycle()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -299,11 +299,11 @@ namespace CASecondTask.Tests
                 "5",
                 "6");
 
-            Assert.AreEqual(GetActualResult(inputLines), expectedResult);
+            Assert.AreEqual(expectedResult, GetActualResult(inputLines));
         }
 
         [Test]
-        public void SixDisconnectedNodesGraphTest()
+        public void SixDisconnectedNodesGraph_ReturnA()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -315,11 +315,11 @@ namespace CASecondTask.Tests
                 "0",
                 "0");
 
-            Assert.AreEqual(GetActualResult(inputLines), ExpectedAcyclicResult);
+            Assert.AreEqual(ExpectedAcyclicResult, GetActualResult(inputLines));
         }
 
         [Test]
-        public void SixNodesAlmostRingGraphTest()
+        public void SixNodesAlmostRingGraph_ReturnA()
         {
             var inputLines = string.Join(
                 Environment.NewLine,
@@ -331,7 +331,7 @@ namespace CASecondTask.Tests
                 "4 6 0",
                 "5 0");
 
-            Assert.AreEqual(GetActualResult(inputLines), ExpectedAcyclicResult);
+            Assert.AreEqual(ExpectedAcyclicResult, GetActualResult(inputLines));
         }
     }
 }
