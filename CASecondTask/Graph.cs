@@ -5,10 +5,11 @@ namespace CASecondTask
 {
     public class Graph
     {
+        public readonly int NodesCount;
         private readonly Node[] nodes;
 
         public Graph(int nodesCount) =>
-            nodes = Enumerable.Range(1, nodesCount)
+            nodes = Enumerable.Range(1, NodesCount = nodesCount)
                               .Select(nodeNumber => new Node(nodeNumber))
                               .ToArray();
 

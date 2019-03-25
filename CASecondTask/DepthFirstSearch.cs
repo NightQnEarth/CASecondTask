@@ -10,7 +10,7 @@ namespace CASecondTask
             var track = new Dictionary<Node, Node>();
             var stack = new Stack<Node>();
 
-            while (track.Count < graph.Nodes.Count())
+            while (track.Count < graph.NodesCount)
             {
                 var searchStartNode = graph.Nodes.Except(track.Keys).First();
                 stack.Clear();
