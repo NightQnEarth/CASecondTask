@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace CASecondTask
 {
-    public class DepthFirstSearch
+    public static class DepthFirstSearch
     {
-        public IEnumerable<Node> GetCycle(Graph graph)
+        public static IEnumerable<Node> GetCycle(Graph graph)
         {
             var track = new Dictionary<Node, Node>();
             var stack = new Stack<Node>();

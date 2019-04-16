@@ -39,6 +39,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="DataParser.cs" />
         <Compile Include="DepthFirstSearch.cs" />
         <Compile Include="Graph.cs" />
         <Compile Include="Node.cs" />

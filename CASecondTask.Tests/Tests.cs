@@ -9,9 +9,7 @@ namespace CASecondTask.Tests
     {
         private const string ExpectedAcyclicResult = "A";
 
-        private readonly DepthFirstSearch finder = new DepthFirstSearch();
-
-        private string GetActualResult(string inputLines)
+        private static string GetActualResult(string inputLines)
         {
             var tempFileName = Path.GetTempFileName();
 
@@ -32,9 +30,9 @@ namespace CASecondTask.Tests
             {
                 using (var reader = new StreamReader(tempFileName))
                 {
-                    var graph = Program.GetInputData(reader.ReadLine);
-                    var resultCycle = finder.GetCycle(graph);
-                    return Program.ResultGenerate(resultCycle);
+                    var graph = DataParser.GetInputData(reader.ReadLine);
+                    var resultCycle = DepthFirstSearch.GetCycle(graph);
+                    return DataParser.ResultGenerate(resultCycle);
                 }
             }
         }
